@@ -1,0 +1,27 @@
+Arguments: 
+  /usr/bin/node /usr/local/bin/yarn add expo-cli
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/mariobatalha/.fzf/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.19.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com registry.yarnpkg.com:443
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -18,12 +18,7 @@ routes.post('/sessions', controllerSessionCompany.create);
  
 
 //Routes
-routes.get('/company', celebrate({
-    [Segments.HEADERS]: Joi.object({
-        username: Joi.string().required(),
-        password: Joi.string().required(),
-    }).unknown(),
-}), controllerCompany.index);
+routes.get('/company', controllerCompany.index);
 
 routes.post('/company', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -72,7 +67,6 @@ routes.post('/request', celebrate({
         title: Joi.string().required(),
         category: Joi.string().required(),
         lifetime: Joi.string().required(),
-        proposal: Joi.number().required(),
         status: Joi.string().required(),
         description: Joi.string().required().min(50),
         createAt: Joi.date().required(),

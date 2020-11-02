@@ -29,9 +29,6 @@ module.exports = {
         })
         return res.json({ id})
 
-        if(!username && !password){
-            return res.status(400).send({ error: 'company registration failed'})
-        }
         
        } catch (error) {
            return res.status(400).send({ error: 'company registration failed'})

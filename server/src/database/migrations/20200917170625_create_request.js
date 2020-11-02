@@ -9,9 +9,9 @@ exports.up = function(knex) {
         table.decimal('proposal').notNullable();
         table.integer('status').notNullable();
         table.string('description', 2000).notNullable();
-        table.timestamp('createAt').notNullable();
+        table.timestamp('createAt').notNullable().defaultTo(knex.fn.now());
 
-        table.string('company_id').notNullable();
+        table.integer('company_id').notNullable();
 
         table.foreign('company_id').references('id').inTable('company');
     })

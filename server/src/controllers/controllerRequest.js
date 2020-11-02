@@ -21,7 +21,7 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const { title, category, lifetime, proposal, status, description, createAt } = req.body;
+            const { title, category, lifetime, status, description, createAt } = req.body;
 
             const company_id = req.headers.authorization; 
 
@@ -29,7 +29,6 @@ module.exports = {
                     title, 
                     category,
                     lifetime,
-                    proposal,
                     status,
                     description,
                     createAt,

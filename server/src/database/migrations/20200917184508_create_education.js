@@ -8,7 +8,7 @@ exports.up = function(knex) {
       table.string('country').notNullable();
       table.string('yearConclusion').notNullable();
 
-      table.string('freelancer_id').notNullable();
+      table.integer('freelancer_id').notNullable();
 
       table.foreign('freelancer_id').references('id').inTable('freelancer');
   })

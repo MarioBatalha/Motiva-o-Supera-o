@@ -9,7 +9,7 @@ exports.up = function(knex) {
       table.string('country').notNullable();
       table.string('function', 100).notNullable();
 
-      table.string('freelancer_id').notNullable();
+      table.integer('freelancer_id').notNullable();
 
       table.foreign('freelancer_id').references('id').inTable('freelancer');
   })

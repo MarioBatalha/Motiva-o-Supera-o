@@ -10,11 +10,11 @@ const controllerFreelancerProfile = require('./controllers/controllerFreelancerP
 const controllerAdmin = require('./controllers/controllerAdmin');
 const controllerAdminProfile = require('./controllers/controllerAdminProfile');
 const controllerRequest = require('./controllers/controllerRequest');
-const controllerSessionCompany = require('./controllers/controllerSessionCompany');
+const controllerSession = require('./controllers/controllerSession');
 
 
 //Session
-routes.post('/sessions', controllerSessionCompany.create);
+routes.post('/sessions', controllerSession.create);
  
 
 //Routes
@@ -22,21 +22,19 @@ routes.get('/company', controllerCompany.index);
 
 routes.post('/company', celebrate({
     [Segments.BODY]: Joi.object().keys({
+        firstname: Joi.string().required(),
+        nickname: Joi.string().required(),
         username: Joi.string().required(),
         email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'co', 'ao'] } }),
         password: Joi.string().required().alphanum().min(6),
         checkPassword: Joi.ref('password'),
         country: Joi.string().required(),
-        nif: Joi.number().required().min(9)
     })
 }), controllerCompany.create);
 
 //Routes profile and validation
-routes.get('/profile', celebrate({
-    [Segments.HEADERS]: Joi.object({
-        id: Joi.number().required()
-    }).unknown(),
-}), controllerCompanyProfile.index);
+
+routes.get('/profile', controllerCompanyProfile.index);
 
 //Routes admin
 routes.post('/admin', controllerAdmin.create);
@@ -46,12 +44,13 @@ routes.get('/admin', controllerAdminProfile.index);
 //Freelancer routes
 routes.post('/freelancer', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        username: Joi.string().required(),
+        firstName: Joi.string().required(),
+        nickName: Joi.string().required(),
         email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'co', 'ao'] } }),
         password: Joi.string().required().alphanum().min(6),
         checkPassword: Joi.ref('password'),
         degree: Joi.string().required(),
-        residence: Joi.string().required(),
+        country: Joi.string().required(),
         phone: Joi.number().required().min(12)
     })
 }), controllerFreelancer.create);
@@ -64,19 +63,19 @@ routes.get('/freelancer', controllerFreelancerProfile.index);
 
 routes.post('/request', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        title: Joi.string().required(),
+        projectName: Joi.string().required(),
         category: Joi.string().required(),
         lifetime: Joi.string().required(),
-        status: Joi.string().required(),
         description: Joi.string().required().min(50),
-        createAt: Joi.date().required(),
+        budget: Joi.number().required(),
+        promotionalCode: Joi.string().required(),
     }), 
 }), controllerRequest.create);
 
 routes.get('/request', celebrate({
-    [Segments.QUERY]: Joi.object().keys({
-        page: Joi.number(),
-    })
+    [Segments.HEADER]: Joi.object().keys({
+        company_id: Joi.number().required()
+    }).unknown(),
 }), controllerRequest.index);
 
 routes.delete('/request/:id', celebrate({

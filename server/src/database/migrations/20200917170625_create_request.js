@@ -2,14 +2,12 @@
 exports.up = function(knex) {
     return knex.schema.createTable('request', function (table){
         table.increments();
-
-        table.string('title').notNullable();
+        table.string('projectName').notNullable();
         table.string('category').notNullable();
         table.string('lifetime').notNullable();
-        table.decimal('proposal').notNullable();
-        table.integer('status').notNullable();
         table.string('description', 2000).notNullable();
-        table.timestamp('createAt').notNullable().defaultTo(knex.fn.now());
+        table.decimal('budget').notNullable();
+        table.string('promotionalCode').notNullable();
 
         table.integer('company_id').notNullable();
 

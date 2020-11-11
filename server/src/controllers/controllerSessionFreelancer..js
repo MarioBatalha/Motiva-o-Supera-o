@@ -2,12 +2,12 @@ const connection = require('../database/connection');
 
 module.exports = {
     async create(req, res) {
-        const { name, password } = req.body;
+        const { username, password } = req.body;
 
         const freela = await connection('freelancer')
-        .where('name', name)
+        .where('username', username)
         .andWhere('password', password)
-        .select('name', 'password')
+        .select('username', 'password')
         .first();
 
         if(!freela) {

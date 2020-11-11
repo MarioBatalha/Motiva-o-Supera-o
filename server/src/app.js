@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();  
 const routes = require('./routes');
 
-app.use(cors());
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+);
+app.options('*', cors());
 app.use(express.json());
 app.use(routes); 
 app.use(errors());
@@ -22,6 +28,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(process.env.PORT || 3333);
+app.listen(process.env.PORT || 3000);
+
 
 module.exports = app; 

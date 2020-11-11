@@ -16,16 +16,17 @@ module.exports = {
     async create(req, res) {
        try {
 
-        const { username, email, password, checkPassword, country, nif } = req.body;
+        const { firstname, nickname, username, email, password, checkPassword, country } = req.body;
        
         const id = generateUniqueId();
         await connection('company').insert({
+            firstname,
+            nickname,
             username,
             email,
             password,
             checkPassword,
             country,
-            nif,
         })
         return res.json({ id})
 

@@ -7,12 +7,12 @@ exports.seed = function(knex) {
       return knex('company').insert([
         {
           id: 1,
-          username: 'Angola cable',
-          email: 'angCable20@gmail.com',
-          password: 'angola123',
-          checkPassword: 'angola123',
+          username: 'kuend Digital',
+          email: 'kuenda20@gmail.com',
+          password: 'kuenda20',
+          checkPassword: 'angolakuenda20',
           country: 'Angola',
-          nif: '558796314200'
+          nif: '5587963142'
         },
       ]);
     });

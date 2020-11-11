@@ -9,15 +9,16 @@ module.exports = {
 
     async create(req, res) {
     try {
-        const { username, email, password, checkPassword, degree, residence, phone } = req.body;
+        const { firstName, nickName,  email, password, checkPassword, degree, country, phone } = req.body;
 
         await connection('freelancer').insert({
-            username,
+            firstName,
+            nickName,
             email,
             password,
             checkPassword,
             degree,
-            residence,
+            country,
             phone,
         })
 

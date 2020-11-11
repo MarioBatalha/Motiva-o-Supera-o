@@ -7,7 +7,7 @@ module.exports = {
     connection: {
       type: 'postgres',
       host: 'localhost',
-      port: 5432,
+      port: 3000,
       user: 'postgres',
       password: 'duo69',
       database: 'contentribe'
@@ -52,7 +52,7 @@ module.exports = {
     client: 'pg',
     connection: {
       type: 'postgres',
-      port: '5432',
+      port: 5432,
       host:'ec2-107-22-241-205.compute-1.amazonaws.com',
       user: 'nktffycamtpbty',
       password: '306b02e6afde4b31c7b5015a0cee94888ba425fb520220e7bee4cbcbe81c7648',

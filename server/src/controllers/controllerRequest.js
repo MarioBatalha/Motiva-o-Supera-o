@@ -12,7 +12,8 @@ module.exports = {
         .offset((page - 1) * 5)
         .select([
             'request.*',
-            'company.id']);
+            'company.id',
+            'company.username']);
 
         res.header('X-Total-Count', count['count(*)'])
 
@@ -21,24 +22,24 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const { title, category, lifetime, status, description, createAt } = req.body;
+            const {  projectName, category, lifetime, description, budget, promotionalCode } = req.body;
 
             const company_id = req.headers.authorization; 
 
-           const [ id ] = await connection('request').insert({
-                    title, 
+             const [ id ] = await connection('request').insert({
+                    projectName,
                     category,
                     lifetime,
-                    status,
                     description,
-                    createAt,
+                    budget,
+                    promotionalCode,
                     company_id,
                 });
 
         return res.json({ id });
 
         } catch (error) {
-            return res.status(400).send({ error: 'Error in task request'})
+            return res.status(400).send({ error: 'Error in task request '})
         }
     },
 
@@ -46,7 +47,7 @@ module.exports = {
         const { id } = req.params;
         const company_id = req.headers.authorization;
 
-        const request = await connection('request')
+        const request = await connection('/request')
         .where('id', id)
         .select('company_id')
         .first();
@@ -55,7 +56,7 @@ module.exports = {
             return res.status(401).json({ error: 'Operation not permitted.'})
         }
 
-        await connection('request')
+        await connection('/request')
         .where('id', id)
         .delete();
         

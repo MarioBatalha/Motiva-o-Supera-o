@@ -19,6 +19,7 @@ module.exports = {
         const { firstname, nickname, username, email, password, checkPassword, country } = req.body;
        
         const id = generateUniqueId();
+
         await connection('company').insert({
             firstname,
             nickname,
@@ -28,8 +29,7 @@ module.exports = {
             checkPassword,
             country,
         })
-        return res.json({ id})
-
+        return res.json({ id })
         
        } catch (error) {
            return res.status(400).send({ error: 'company registration failed'})

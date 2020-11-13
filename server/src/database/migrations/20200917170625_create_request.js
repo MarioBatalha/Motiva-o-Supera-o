@@ -2,6 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('request', function (table){
         table.increments();
+
         table.string('projectName').notNullable();
         table.string('category').notNullable();
         table.string('lifetime').notNullable();
@@ -9,7 +10,7 @@ exports.up = function(knex) {
         table.decimal('budget').notNullable();
         table.string('promotionalCode').notNullable();
 
-        table.integer('company_id').notNullable();
+        table.string('company_id').notNullable();
 
         table.foreign('company_id').references('id').inTable('company');
     })

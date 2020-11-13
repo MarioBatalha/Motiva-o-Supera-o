@@ -23,10 +23,9 @@ module.exports = {
     async create(req, res) {
         try {
             const {  projectName, category, lifetime, description, budget, promotionalCode } = req.body;
+            const company_id = req.headers.Authorization; 
 
-            const company_id = req.headers.authorization; 
-
-             const [ id ] = await connection('request').insert({
+             const [id] = await connection('request').insert({
                     projectName,
                     category,
                     lifetime,
@@ -47,7 +46,7 @@ module.exports = {
         const { id } = req.params;
         const company_id = req.headers.authorization;
 
-        const request = await connection('/request')
+        const request = await connection('request')
         .where('id', id)
         .select('company_id')
         .first();
@@ -56,7 +55,7 @@ module.exports = {
             return res.status(401).json({ error: 'Operation not permitted.'})
         }
 
-        await connection('/request')
+        await connection('request')
         .where('id', id)
         .delete();
         

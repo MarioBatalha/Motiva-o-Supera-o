@@ -21,6 +21,7 @@ module.exports = {
         const id = generateUniqueId();
 
         await connection('company').insert({
+            id,
             firstname,
             nickname,
             username,

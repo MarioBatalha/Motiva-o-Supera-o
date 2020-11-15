@@ -34,11 +34,7 @@ routes.post('/company', celebrate({
 
 //Routes profile and validation
 
-routes.get('/profile', celebrate({
-    [Segments.HEADERS]: Joi.object({
-        Authorization: Joi.string().required(),
-    }).unknown(),
-}), controllerCompanyProfile.index);
+routes.get('/profile', controllerCompanyProfile.index);
 
 //Routes admin
 routes.post('/admin', controllerAdmin.create);
@@ -73,17 +69,10 @@ routes.post('/request', celebrate({
         description: Joi.string().required().min(50),
         budget: Joi.number().required(),
         promotionalCode: Joi.string().required(),
-    }), 
-    [Segments.HEADERS]: Joi.object({
-        Authorization: Joi.string().required(),
-    }).unknown(),
+    })
 }), controllerRequest.create);
 
-routes.get('/request', celebrate({
-    [Segments.QUERY]: Joi.object().keys({
-        page: Joi.number(),
-    })
-}), controllerRequest.index);
+routes.get('/request', controllerRequest.index);
 
 routes.delete('/request/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({

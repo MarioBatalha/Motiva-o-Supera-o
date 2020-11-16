@@ -1,8 +1,9 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('request', function (table){
-        table.increments()
-        table.string('projectName').notNullable();
+        table.increments();
+        
+        table.string('title').notNullable();
         table.string('category').notNullable();
         table.string('lifetime').notNullable();
         table.string('description', 2000).notNullable();

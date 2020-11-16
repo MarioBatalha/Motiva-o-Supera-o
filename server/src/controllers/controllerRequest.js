@@ -22,12 +22,12 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const {  projectName, category, lifetime, description, budget, promotionalCode } = req.body;
+            const { title, category, lifetime, description, budget, promotionalCode } = req.body;
 
             const company_id = req.headers.authorization; 
 
              const [id] = await connection('request').insert({
-                    projectName,
+                    title,
                     category,
                     lifetime,
                     description,

@@ -63,7 +63,7 @@ routes.get('/freelancer', controllerFreelancerProfile.index);
 
 routes.post('/request', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        projectName: Joi.string().required(),
+        title: Joi.string().required(),
         category: Joi.string().required(),
         lifetime: Joi.string().required(),
         description: Joi.string().required().min(50),

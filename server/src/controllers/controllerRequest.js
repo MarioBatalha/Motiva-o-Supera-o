@@ -7,13 +7,12 @@ module.exports = {
         const [count] = await connection('request').count();
 
         const request = await connection('request')
-        .join('company', 'company_id', '=', 'request.company_id')
+        .join('company', 'company.username', '=', 'request.company_username')
         .limit(5)
         .offset((page - 1) * 5)
         .select([
-            'request.*',
-            'company.id',
-            'company.username']);
+            'request.*'
+        ]);
 
         res.header('X-Total-Count', count['count(*)'])
 
@@ -24,7 +23,7 @@ module.exports = {
         try {
             const { title, category, lifetime, description, budget, promotionalCode } = req.body;
 
-            const company_id = req.headers.authorization; 
+            const company_username = req.headers.authorization; 
 
              const [id] = await connection('request').insert({
                     title,
@@ -33,7 +32,7 @@ module.exports = {
                     description,
                     budget,
                     promotionalCode,
-                    company_id,
+                    company_username,
                 });
 
         return res.json({ id });
@@ -45,14 +44,14 @@ module.exports = {
 
     async delete(req, res) {
         const { id } = req.params;
-        const company_id = req.headers.authorization;
+        const company_username = req.headers.authorization;
 
         const request = await connection('request')
         .where('id', id)
         .select('company_id')
         .first();
 
-        if(request.company_id !== company_id) {
+        if(request.company_username !== company_username) {
             return res.status(401).json({ error: 'Operation not permitted.'})
         }
 

@@ -7,12 +7,12 @@ exports.up = function(knex) {
         table.string('category').notNullable();
         table.string('lifetime').notNullable();
         table.string('description', 2000).notNullable();
-        table.decimal('budget').notNullable();
+        table.float('budget').notNullable();
         table.string('promotionalCode').notNullable();
 
-        table.string('company_id').notNullable();
+        table.string('company_username').notNullable();
 
-        table.foreign('company_id').references('id').inTable('company');
+        table.foreign('company_username').references('username').inTable('company');
     })
   };
   

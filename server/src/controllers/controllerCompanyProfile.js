@@ -3,10 +3,10 @@ const connection = require('../database/connection');
 module.exports = {
     async index(req, res) {
         try {
-            const company_id = req.headers.authorization;
+            const company_username = req.headers.authorization;
 
             const request = await connection('request')
-            .where('company_id', company_id)
+            .where('company_username', company_username)
             .select('*');
 
             return res.json(request)

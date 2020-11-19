@@ -7,7 +7,7 @@ exports.up = function(knex) {
         table.string('category').notNullable();
         table.string('lifetime').notNullable();
         table.string('description', 2000).notNullable();
-        table.float('budget').notNullable();
+        table.float('budget', { precision: 6 }).notNullable();
         table.string('promotionalCode').notNullable();
 
         table.string('company_username').notNullable();

@@ -15,6 +15,7 @@ const controllerSession = require('./controllers/controllerSession');
 
 //Session
 routes.post('/sessions', controllerSession.create);
+routes.post('/sessions', controllerSessionFreelancer.create);
  
 
 //Routes

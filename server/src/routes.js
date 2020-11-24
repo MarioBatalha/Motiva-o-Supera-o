@@ -7,15 +7,13 @@ const controllerCompany = require('./controllers/controllerCompany');
 const controllerCompanyProfile = require('./controllers/controllerCompanyProfile');
 const controllerFreelancer = require('./controllers/controllerFreelancer');
 const controllerFreelancerProfile = require('./controllers/controllerFreelancerProfile');
-const controllerAdmin = require('./controllers/controllerAdmin');
-const controllerAdminProfile = require('./controllers/controllerAdminProfile');
 const controllerRequest = require('./controllers/controllerRequest');
 const controllerSession = require('./controllers/controllerSession');
 
 
 //Session
 routes.post('/sessions', controllerSession.create);
-routes.post('/sessions', controllerSessionFreelancer.create);
+
  
 
 //Routes
@@ -38,9 +36,9 @@ routes.post('/company', celebrate({
 routes.get('/profile', controllerCompanyProfile.index);
 
 //Routes admin
-routes.post('/admin', controllerAdmin.create);
+//routes.post('/admin', controllerAdmin.create);
 
-routes.get('/admin', controllerAdminProfile.index);
+//routes.get('/admin', controllerAdminProfile.index);
 
 //Freelancer routes
 routes.post('/freelancer', celebrate({
